@@ -1,0 +1,66 @@
+[:- Requirements -:]
+
+* node.js, confirmed working with version 10.15.3 (node -v) and NPM
+* a Discord bot & token (search for: creating a discord bot & getting a token)
+* Corrade, confirmed working with version 10.2.7056.25255
+  * Corrade must have the MQTT server enabled and running.
+
+Two programs will have to be running: Corrade and the bridge program (this 
+one), at all times for the messages to be relayed.
+
+Setting up Corrade is wholely documented on the Wizardry and Steamworks Corrade 
+page.
+Node.JS can be installed for each Linux distribution and for Windows from 
+official sources.
+
+[:- Installing -:]
+
+In the directory containing this document issue the command:
+
+npm install
+
+in order to install dependencies.
+
+Next, copy the file "config.yml.dist" to "config.yml" and edit the file to make 
+the settings.
+
+[:- Running -:]
+
+For a test run, execute:
+
+node main.js
+
+and follow the console messages. If everything went well, the program will 
+announce that it has connected to Discord and to the Corrade MQTT server.
+
+[:- Linux: Running as a Service -:]
+
+Copy the file from "contrib/linux/corrade-group-discord-bridge.service" to 
+"/etc/systemd/system/" and edit it to configure parameters.
+
+Set the executable bit on the main file:
+
+chmod +x /etc/systemd/system/corrade-group-discord-bridge.service
+
+Issue the command:
+
+systemctl enable corrade-group-discord-bridge.service
+
+to enable the service.
+
+Finally, issue:
+
+systemctl start corrade-group-discord-bridge.service
+
+to start up the bridge in the background.
+
+The service will be restarted in case it crashes and will also restart after 
+reboots.
+
+(⌐■_■)
+
+[:- Licensing and Terms -:]
+
+The standard Corrade dual-license applies to this project. For more information 
+on the Corrade dual license, please see the Corrade documentation.
+
